@@ -20,6 +20,7 @@ export class AuthService {
         data: {
           email: dto.email,
           password,
+          name: dto.name,
         },
       });
 
