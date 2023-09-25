@@ -12,7 +12,7 @@ import {
 import { ProjectService } from './project.service';
 import { GetUser } from 'src/auth/decorator';
 import { JwtGuard } from 'src/auth/guard';
-import { ProjectDto } from './dto';
+import { EditProjectDto, ProjectDto } from './dto';
 
 @UseGuards(JwtGuard)
 @Controller('projects')
@@ -41,8 +41,9 @@ export class ProjectController {
   editProject(
     @GetUser('id') userId: number,
     @Param('id', ParseIntPipe) projectId: number,
+    @Body() dto: EditProjectDto,
   ) {
-    return this.projectService.editProject(userId, projectId);
+    return this.projectService.editProject(userId, projectId, dto);
   }
 
   @Delete(':id')
