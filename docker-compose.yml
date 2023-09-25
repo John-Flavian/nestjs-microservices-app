@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  tasks-db:
+    image: postgres:14
+    ports:
+      - '5436:5432'
+    environment:
+      - POSTGRES_USER=johnflavian
+      - POSTGRES_PASSWORD=johnny2023
+      - POSTGRES_DB=tasksdb
+    networks:
+      - tasks-service
+
+networks:
+  tasks-service:
