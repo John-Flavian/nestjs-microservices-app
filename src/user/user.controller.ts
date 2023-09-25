@@ -12,8 +12,7 @@ export class UserController {
 
   @Get('user')
   getUser(@GetUser() user: User) {
-    console.log(user);
-    return 'Gotten User';
+    return user;
   }
 
   @Patch('user')
