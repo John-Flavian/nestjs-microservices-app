@@ -17,6 +17,9 @@ lerna-debug.log*
 # Environment Variables
 .env
 
+# Request Methods
+*.http
+
 # Tests
 /coverage
 /.nyc_output
