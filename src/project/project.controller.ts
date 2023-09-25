@@ -1,8 +1,18 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { GetUser } from 'src/auth/decorator';
-import { User } from '@prisma/client';
 import { JwtGuard } from 'src/auth/guard';
+import { ProjectDto } from './dto';
 
 @UseGuards(JwtGuard)
 @Controller('projects')
@@ -10,7 +20,36 @@ export class ProjectController {
   constructor(private projectService: ProjectService) {}
 
   @Get()
-  getProjects(@GetUser() user: User) {
-    return `Projects gotten:, ${user.id}`;
+  getProjects(@GetUser('id') userId: number) {
+    return this.projectService.getProjects(userId);
+  }
+
+  @Get(':id')
+  getProjectsById(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe) projectId: number,
+  ) {
+    return this.projectService.getProjectsById(userId, projectId);
+  }
+
+  @Post()
+  createProject(@GetUser('id') userId: number, @Body() dto: ProjectDto) {
+    return this.projectService.createProject(userId, dto);
+  }
+
+  @Patch(':id')
+  editProject(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe) projectId: number,
+  ) {
+    return this.projectService.editProject(userId, projectId);
+  }
+
+  @Delete(':id')
+  deleteProject(
+    @GetUser('id') userId: number,
+    @Param('id', ParseIntPipe) projectId: number,
+  ) {
+    return this.projectService.deleteProject(userId, projectId);
   }
 }
