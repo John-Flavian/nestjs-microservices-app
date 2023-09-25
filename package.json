@@ -8,6 +8,7 @@
   "scripts": {
     "db:dev:rm": "docker compose rm tasks-db -s -f -v",
     "db:dev:up": "docker compose up tasks-db -d",
+    "containers": "docker-compose up -d",
     "prisma:dev:deploy": "prisma migrate deploy",
     "db:dev:restart": "npm run db:dev:rm && npm run db:dev:up && sleep 3 && npm run prisma:dev:deploy",
     "build": "nest build",

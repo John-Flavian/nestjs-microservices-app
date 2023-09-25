@@ -11,5 +11,19 @@ services:
     networks:
       - tasks-service
 
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    networks:
+      - tasks-service
+
+  redis-stack:
+    image: redis/redis-stack:latest
+    ports:
+      - '6379:6379'
+      - '8001:8001'
+
 networks:
   tasks-service:
