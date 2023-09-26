@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { ProjectModule } from './project/project.module';
 import { TaskModule } from './task/task.module';
+import { RmqModule } from './rmq/rmq.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { TaskModule } from './task/task.module';
     ProjectModule,
     PrismaModule,
     TaskModule,
+    RmqModule,
   ],
 })
 export class AppModule {}
